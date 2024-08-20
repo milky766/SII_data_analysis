@@ -19,27 +19,44 @@ def adjust_and_plot(df_path, label, color, offset=0):
 plt.figure(figsize=(10, 6))
 
 # 1つ目のデータセット（model）の最初の値を取得
-model_df = pd.read_csv(r'C:\Users\Mizuki\University\Reserch\reflex\python\data\combined_output_angle_adjusted_model.csv')
-sensor_df = pd.read_csv(r'C:\Users\Mizuki\University\Reserch\reflex\python\data\combined_output_angle_adjusted_sensor.csv')
+# model_df = pd.read_csv(r'C:\Users\Mizuki\University\Reserch\reflex\python\data\combined_output_angle_adjusted_model.csv')
+# sensor_df = pd.read_csv(r'C:\Users\Mizuki\University\Reserch\reflex\python\data\combined_output_angle_adjusted_sensor.csv')
+model_df = pd.read_csv(r'C:\Users\ymilk\University\reserch\python\SII_data_analysis\data\combined_output_angle_adjusted_model.csv')
+sensor_df = pd.read_csv(r'C:\Users\ymilk\University\reserch\python\SII_data_analysis\data\combined_output_angle_adjusted_sensor.csv')
 
 # オフセットを計算
 model_initial_angle = model_df['angle_average'].iloc[0]
 sensor_initial_angle = sensor_df['angle_average'].iloc[0]
 offset_model = model_initial_angle - sensor_initial_angle
 
+# # modelデータにオフセットを適用してプロット
+# adjust_and_plot(
+#     r'C:\Users\Mizuki\University\Reserch\reflex\python\data\combined_output_angle_adjusted_model.csv',
+#     'Reflex by Model',
+#     'blue',
+#     offset_model
+# )
+
+# # sensorデータをそのままプロット
+# adjust_and_plot(
+#     r'C:\Users\Mizuki\University\Reserch\reflex\python\data\combined_output_angle_adjusted_sensor.csv',
+#     'Reflex by Fiber Sensor',
+#     'orange'
+# )
+
 # modelデータにオフセットを適用してプロット
 adjust_and_plot(
-    r'C:\Users\Mizuki\University\Reserch\reflex\python\data\combined_output_angle_adjusted_model.csv',
+    r'C:\Users\ymilk\University\reserch\python\SII_data_analysis\data\combined_output_angle_adjusted_model.csv',
     'Reflex by Model',
-    'blue',
+    'red',
     offset_model
 )
 
 # sensorデータをそのままプロット
 adjust_and_plot(
-    r'C:\Users\Mizuki\University\Reserch\reflex\python\data\combined_output_angle_adjusted_sensor.csv',
-    'Reflex by Sensor',
-    'orange'
+    r'C:\Users\ymilk\University\reserch\python\SII_data_analysis\data\combined_output_angle_adjusted_sensor.csv',
+    'Reflex by Fiber Sensor',
+    'blue'
 )
 
 plt.xlabel('Time [s]')
@@ -47,6 +64,6 @@ plt.ylabel('Angle [deg]')
 plt.legend()
 
 # グラフをファイルに保存
-plt.savefig(r'C:\Users\Mizuki\University\Reserch\reflex\python\fig\time_vs_angle_model_sensor.pdf',bbox_inches='tight')
+plt.savefig(r'C:\Users\ymilk\University\reserch\python\SII_data_analysis\fig\time_vs_angle_model_sensor.pdf',bbox_inches='tight')
 
 plt.show()
