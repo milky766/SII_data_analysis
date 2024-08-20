@@ -61,7 +61,7 @@ adjust_and_plot(
 
 plt.xlabel('Time [s]')
 plt.ylabel('Angle [deg]')
-plt.legend()
+plt.legend(loc='upper right',fontsize=14)
 
 # グラフをファイルに保存
 plt.savefig(r'C:\Users\ymilk\University\reserch\python\SII_data_analysis\fig\time_vs_angle_model_sensor.pdf',bbox_inches='tight')

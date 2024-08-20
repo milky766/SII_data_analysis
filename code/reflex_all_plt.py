@@ -12,20 +12,26 @@ angle_column = ['angle']
 
 initial_angle = data['angle'].iloc[0]
 data['angle_adjusted'] = data['angle'] - initial_angle
-data['tension_left_adjusted'] = -data['tension_left']
+
+# analog signal to tension
+data['tension_left_scaled'] = data['tension_left'] * (-80/65535)
+data['tension_right_scaled'] = data['tension_right'] * (80/65535)
 
 # Selecting the relevant columns for each plot
 
 # Plotting the graphs
-fig, axs = plt.subplots(5, 1, figsize=(10, 15))
+fig, axs = plt.subplots(5, 1, figsize=(10, 13))
 time_adjusted = data['count'] / 100
 
 # 時間を調整 (12秒から14秒の範囲)
-mask = (time_adjusted >= 5) & (time_adjusted <= 6.2)
+mask = (time_adjusted >= 5.1) & (time_adjusted <= 6.1)
 
 # データをフィルタリング
 data_filtered = data[mask]
 time_filtered = time_adjusted[mask]
+
+# 時間を0から始まるように調整
+time_filtered = time_filtered - time_filtered.iloc[0]
 
 # Joint angle graph
 axs[0].plot(time_filtered, data_filtered['angle_adjusted'], label='Angle', color='green')
@@ -34,30 +40,30 @@ axs[0].legend(loc='upper right')
 axs[0].grid(True)
 
 # Muscle stretch speed graph
-axs[1].plot(time_filtered, data_filtered['ms_speed_right_model'], label='Estimated Velocity (Antagonist)', color='blue')
-axs[1].plot(time_filtered, data_filtered['ms_speed_left_model'], label='Estimated Velocity (Agonist)', color='red')
-axs[1].axhline(y=75, color='black', linestyle='--', label='Threshold = 75[mm/s]')
+axs[1].plot(time_filtered, data_filtered['ms_speed_left_model'], label='Estimated Velocity (Agonist)', color='#FFA500')  # Orange
+axs[1].plot(time_filtered, data_filtered['ms_speed_right_model'], label='Estimated Velocity (Antagonist)', color='#1E3A8A')  # Dark Blue
+axs[1].axhline(y=75, color='black', linestyle='--', label='Threshold = 75 [mm/s]')
 axs[1].set_ylabel('Estimated Velocity [mm/s]')
 axs[1].legend(loc='upper right')
 axs[1].grid(True)
 
 # Muscle model graph
-axs[2].plot(time_filtered, data_filtered['ms_right_model'], label='Estimated Length (Antagonist)', color='blue')
-axs[2].plot(time_filtered, data_filtered['ms_left_model'], label='Estimated Length (Agonist)', color='red')
+axs[2].plot(time_filtered, data_filtered['ms_left_model'], label='Estimated Length (Agonist)', color='#FFA500')  # Orange
+axs[2].plot(time_filtered, data_filtered['ms_right_model'], label='Estimated Length (Antagonist)', color='#1E3A8A')  # Dark Blue
 axs[2].set_ylabel('Estimated Length [mm]')
 axs[2].legend(loc='upper right')
 axs[2].grid(True)
 
 # Tension graph
-axs[3].plot(time_filtered, data_filtered['tension_right'], label='Δ Voltage (Antagonist)', color='blue')
-axs[3].plot(time_filtered, data_filtered['tension_left_adjusted'], label='Δ Voltage (Agonist)', color='red')
+axs[3].plot(time_filtered, data_filtered['tension_left_scaled'], label='Scaled Δ Voltage (Agonist)', color='#FFA500')  # Orange
+axs[3].plot(time_filtered, data_filtered['tension_right_scaled'], label='Scaled Δ Voltage (Antagonist)', color='#1E3A8A')  # Dark Blue
 axs[3].set_ylabel('Δ Voltage [mV]')
 axs[3].legend(loc='upper right')
 axs[3].grid(True)
 
 # Pressure graph
-axs[4].plot(time_filtered, data_filtered['pressure_right'], label='Pressure (Antagonist)', color='blue')
-axs[4].plot(time_filtered, data_filtered['pressure_left'], label='Pressure (Agonist)', color='red')
+axs[4].plot(time_filtered, data_filtered['pressure_left'], label='Pressure (Agonist)', color='#FFA500')  # Orange
+axs[4].plot(time_filtered, data_filtered['pressure_right'], label='Pressure (Antagonist)', color='#1E3A8A')  # Dark Blue
 axs[4].set_xlabel('Time [s]')
 axs[4].set_ylabel('Pressure [MPa]')
 axs[4].legend(loc='upper right')

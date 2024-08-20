@@ -11,16 +11,16 @@ df = pd.read_excel(file_path, sheet_name=sheet_name)
 df['Time'] = df['Time'] / 1000
 
 # グラフの作成
-plt.figure(figsize=(10, 6))
-plt.plot(df['Time'], df['true_encoder'], label='Linear Encoder', color='green')
-plt.plot(df['Time'], df['ms_left_sensor_estimate'], label='Estimation by Fiber Sensor', color='blue')
+plt.figure(figsize=(10,6))
 plt.plot(df['Time'], df['ms_left_model'], label='Estimation by Model', color='red')
+plt.plot(df['Time'], df['ms_left_sensor_estimate'], label='Estimation by Fiber Sensor', color='blue')
+plt.plot(df['Time'], df['true_encoder'], label='Linear Encoder', color='green')
 # グラフの装飾
 plt.xlabel('Time [s]')
 plt.ylabel('Length [mm]')
 plt.xlim(0, 12)  # 横軸の範囲を0から1200/100に制限
 plt.ylim(135,170)
-plt.legend(loc='upper right')
+plt.legend(loc='upper right',fontsize=14)
 
 # グラフを表示
 plt.savefig("C:\\Users\\ymilk\\University\\reserch\\python\\SII_data_analysis\\fig\\reaching_error.pdf",bbox_inches='tight')
