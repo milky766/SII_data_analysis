@@ -59,8 +59,8 @@ adjust_and_plot(
 #     'blue'
 # )
 
-plt.xlabel('Time [s]')
-plt.ylabel('Angle [deg]')
+plt.xlabel('Time [s]',fontsize=16)
+plt.ylabel('Angle [deg]',fontsize=16)
 plt.legend(loc='upper right',fontsize=14)
 
 # グラフをファイルに保存

@@ -23,8 +23,8 @@ plt.text(6.7, 157, 'Strain Gauge Loses Tension', verticalalignment='center', hor
 # 横軸に2.7のラベルを追加
 plt.xticks(list(plt.xticks()[0]) + [2.7])  # 現在のラベルに2.7を追加
 # グラフの装飾
-plt.xlabel('Time [s]')
-plt.ylabel('Length [mm]')
+plt.xlabel('Time [s]',fontsize=16)
+plt.ylabel('Length [mm]',fontsize=16)
 plt.xlim(0, 12)  # 横軸の範囲を0から1200/100に制限
 plt.ylim(130,165)
 plt.legend(loc='upper right',fontsize=13)
