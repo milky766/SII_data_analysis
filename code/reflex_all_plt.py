@@ -1,7 +1,8 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 
-file_path = r'C:\Users\ymilk\University\reserch\python\SII_data_analysis\data\origin\adapt\reflex_with_model\20240819_r20.csv'
+# file_path = r'C:\Users\ymilk\University\reserch\python\SII_data_analysis\data\origin\adapt\reflex_with_model\20240819_r20.csv'
+file_path = r'C:\Users\HosodaLab2\University\Reserch\reflex\SII_data_analysis\data\origin\adapt\reflex_with_model\20240819_r20.csv'
 data = pd.read_csv(file_path)
 
 pressure_columns = ['pressure_right', 'pressure_left']
@@ -11,7 +12,8 @@ ms_model_columns = ['ms_right_model', 'ms_left_model']
 angle_column = ['angle']
 
 initial_angle = data['angle'].iloc[0]
-data['angle_adjusted'] = data['angle'] - initial_angle
+data['angle_adjusted'] = data['angle'] 
+# data['angle_adjusted'] = data['angle'] - initial_angle
 
 # analog signal to tension
 data['tension_left_scaled'] = data['tension_left'] * (-80/65535)
@@ -55,8 +57,8 @@ axs[2].legend(loc='upper right')
 axs[2].grid(True)
 
 # Tension graph
-axs[3].plot(time_filtered, data_filtered['tension_left_scaled'], label='Scaled Δ Voltage (Agonist)', color='#FFA500')  # Orange
-axs[3].plot(time_filtered, data_filtered['tension_right_scaled'], label='Scaled Δ Voltage (Antagonist)', color='#1E3A8A')  # Dark Blue
+axs[3].plot(time_filtered, data_filtered['tension_left_scaled'], label='Δ Voltage (Agonist)', color='#FFA500')  # Orange
+axs[3].plot(time_filtered, data_filtered['tension_right_scaled'], label='Δ Voltage (Antagonist)', color='#1E3A8A')  # Dark Blue
 axs[3].set_ylabel('Δ Voltage [mV]')
 axs[3].legend(loc='upper right')
 axs[3].grid(True)
@@ -73,5 +75,6 @@ axs[4].grid(True)
 plt.tight_layout(pad=0.5)
 plt.subplots_adjust(left=0.07, right=0.99, top=0.99, bottom=0.03)
 
-plt.savefig(r'C:\Users\ymilk\University\reserch\python\SII_data_analysis\fig\reflex_all_model\20240819_r20_reflex_all_plt.pdf')
+# plt.savefig(r'C:\Users\ymilk\University\reserch\python\SII_data_analysis\fig\reflex_all_model\20240819_r20_reflex_all_plt.pdf')
+plt.savefig(r'C:\Users\HosodaLab2\University\Reserch\reflex\SII_data_analysis\fig\reflex_all_model\20240819_r20_reflex_all_plt.pdf')
 plt.show()
