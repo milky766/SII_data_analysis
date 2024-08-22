@@ -2,8 +2,8 @@ import pandas as pd
 import matplotlib.pyplot as plt
 
 # xlsxファイルの読み込み
-# file_path ="C:\\Users\\ymilk\\University\\reserch\\python\\SII_data_analysis\\data\\calculate_error.xlsx"
-file_path =r'C:\Users\ymilk\University\reserch\python\SII_data_analysis\data\origin\calculate_error_acryl.xlsx'
+file_path =r"C:\Users\Mizuki\University\Reserch\reflex\python\data\origin\calculate_error_acryl.xlsx"
+# file_path =r'C:\Users\ymilk\University\reserch\python\SII_data_analysis\data\origin\calculate_error_acryl.xlsx'
 sheet_name = 'ago_4'
 
 # データを読み込み
@@ -12,8 +12,8 @@ df['Time'] = df['Time'] / 1000
 
 # グラフの作成
 plt.figure(figsize=(10,6))
-plt.plot(df['Time'], df['ms_left_model'], label='Estimation by Model', color='red')
-plt.plot(df['Time'], df['ms_left_sensor_estimate'], label='Estimation by Fiber Sensor', color='blue')
+plt.plot(df['Time'], df['ms_left_model'], label='Estimation with Model', color='red')
+plt.plot(df['Time'], df['ms_left_sensor_estimate'], label='Estimation with Fiber Sensor', color='blue')
 plt.plot(df['Time'], df['true_encoder'], label='Linear Encoder', color='green')
 
 # 2.5秒の時点に黒の点線を追加
@@ -30,5 +30,7 @@ plt.ylim(130,165)
 plt.legend(loc='upper right',fontsize=14)
 
 # グラフを表示
-plt.savefig("C:\\Users\\ymilk\\University\\reserch\\python\\SII_data_analysis\\fig\\reaching_error.pdf",bbox_inches='tight')
+# plt.savefig("C:\\Users\\ymilk\\University\\reserch\\python\\SII_data_analysis\\fig\\reaching_error.pdf",bbox_inches='tight')
+
+plt.savefig(r"C:\Users\Mizuki\University\Reserch\reflex\python\fig\reaching_error.pdf",bbox_inches='tight')
 plt.show()
