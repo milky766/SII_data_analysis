@@ -19,7 +19,7 @@ plt.plot(df['Time'], df['true_encoder'], label='Linear Encoder', color='green')
 # 2.5秒の時点に黒の点線を追加
 plt.axvline(x=2.7, color='black', linestyle='--', linewidth=1)
 # テキストを追加
-plt.text(6.7, 157, 'Strain Gauge Loses Tension', verticalalignment='center', horizontalalignment='right', fontsize=13, color='black')
+plt.text(6.7, 157, 'Strain Gauge Lost Tension', verticalalignment='center', horizontalalignment='right', fontsize=13, color='black')
 # 横軸に2.7のラベルを追加
 plt.xticks(list(plt.xticks()[0]) + [2.7])  # 現在のラベルに2.7を追加
 # グラフの装飾
