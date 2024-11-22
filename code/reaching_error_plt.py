@@ -1,6 +1,12 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 
+# Type 1フォントの設定 (Type 3フォントを回避)
+plt.rcParams['pdf.fonttype'] = 42  # PDFでType 1フォントを使用
+plt.rcParams['ps.fonttype'] = 42  # PostScriptでType 1フォントを使用
+# フォント設定 (デフォルトをサンセリフに設定)
+plt.rcParams['font.family'] = 'DejaVu Sans'  # Type 1対応の英語フォントを選択
+
 # xlsxファイルの読み込み
 # file_path ="C:\\Users\\ymilk\\University\\reserch\\python\\SII_data_analysis\\data\\calculate_error.xlsx"
 file_path =r'C:\Users\ymilk\University\reserch\python\SII_data_analysis\data\origin\calculate_error_acryl.xlsx'

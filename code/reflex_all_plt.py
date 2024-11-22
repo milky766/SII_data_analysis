@@ -1,8 +1,14 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 
-# file_path = r'C:\Users\ymilk\University\reserch\python\SII_data_analysis\data\origin\adapt\reflex_with_model\20240819_r20.csv'
-file_path = r'C:\Users\HosodaLab2\University\Reserch\reflex\SII_data_analysis\data\origin\adapt\reflex_with_model\20240819_r20.csv'
+# Type 1フォントの設定 (Type 3フォントを回避)
+plt.rcParams['pdf.fonttype'] = 42  # PDFでType 1フォントを使用
+plt.rcParams['ps.fonttype'] = 42  # PostScriptでType 1フォントを使用
+# フォント設定 (デフォルトをサンセリフに設定)
+plt.rcParams['font.family'] = 'DejaVu Sans'  # Type 1対応の英語フォントを選択
+
+file_path = r'C:\Users\ymilk\University\reserch\python\SII_data_analysis\data\origin\adapt\reflex_with_model\20240819_r20.csv'
+#file_path = r'C:\Users\HosodaLab2\University\Reserch\reflex\SII_data_analysis\data\origin\adapt\reflex_with_model\20240819_r20.csv'
 data = pd.read_csv(file_path)
 
 pressure_columns = ['pressure_right', 'pressure_left']
@@ -75,6 +81,6 @@ axs[4].grid(True)
 plt.tight_layout(pad=0.5)
 plt.subplots_adjust(left=0.07, right=0.99, top=0.99, bottom=0.03)
 
-# plt.savefig(r'C:\Users\ymilk\University\reserch\python\SII_data_analysis\fig\reflex_all_model\20240819_r20_reflex_all_plt.pdf')
-plt.savefig(r'C:\Users\HosodaLab2\University\Reserch\reflex\SII_data_analysis\fig\reflex_all_model\20240819_r20_reflex_all_plt.pdf')
+plt.savefig(r'C:\Users\ymilk\University\reserch\python\SII_data_analysis\fig\reflex_all_model\20240819_r20_reflex_all_plt.pdf')
+#plt.savefig(r'C:\Users\HosodaLab2\University\Reserch\reflex\SII_data_analysis\fig\reflex_all_model\20240819_r20_reflex_all_plt.pdf')
 plt.show()
